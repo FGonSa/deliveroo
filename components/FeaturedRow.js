@@ -29,6 +29,8 @@ const FeaturedRow = ({id, title, description}) => {
     })
   }, [id])
 
+  console.log(restaurants)
+
   return (
     <View>
     <View className="mt-4 flex-row items-center justify-between px-4">
@@ -48,21 +50,22 @@ const FeaturedRow = ({id, title, description}) => {
     >
 
     {/* Restaurant Cards */ }
-    {restaurants?.map(restaurant => {
+
+    {restaurants?.map((restaurant) => (
       <RestaurantCard 
       key={restaurant._id}
       id={restaurant._id}
       imgUrl={restaurant.image}
-      title={restaurant.name}
-      rating={restaurant.rating}
-      genre={restaurant.type?.name}
       address={restaurant.address}
-      short_description={restaurant.short_description}
+      title={restaurant.name}
       dishes={restaurant.dishes}
+      rating={restaurant.rating}
+      short_description={restaurant.short_description}
+      genre={restaurant.type?.name}
       long={restaurant.long}
       lat={restaurant.lat}
       />
-    })}
+    ))}
     </ScrollView>
     </View>
   )

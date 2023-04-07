@@ -24,21 +24,27 @@ const HomeScreen = () => {
 
   //En cuanto se cargue el componente, hago fetch del Backend
   useEffect(() => {
-    createClient.fetch(
-      `
-      *[_type == "featured"]{
-        ...,
-        restaurants[]->{
+    try{
+      createClient.fetch(
+        `
+        *[_type == "featured"]{
           ...,
-          dishes[]->
+          restaurants[]->{
+            ...,
+            dishes[]->
+          }
         }
-      }
-      `
-    )
-    .then((data) => {
-      setFeaturedCategories(data);
-    })
+        `
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      })
+    }catch(error){
+      console.log("Ha ocurrido un error")
+    }
   },[])
+
+  console.log(featuredCategories)
 
   return (
     <SafeAreaView className="bg-white pt-5">
@@ -89,7 +95,6 @@ const HomeScreen = () => {
           {/* Destacado */ }
 
           {featuredCategories?.map(category=> (
-
             <FeaturedRow
             key={category._id}
             id={category._id}
@@ -97,6 +102,7 @@ const HomeScreen = () => {
             description={category.short_description}
             />
           ))}
+          
       </ScrollView>
   
 
