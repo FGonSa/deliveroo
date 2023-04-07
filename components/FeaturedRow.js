@@ -19,7 +19,7 @@ const FeaturedRow = ({id, title, description}) => {
           type-> {
             name
           }
-        }
+        },
       }[0]
       `,
       {id}
