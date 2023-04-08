@@ -13,6 +13,7 @@ import {QuestionMarkCircleIcon} from 'react-native-heroicons/outline'
 import DishRow from '../components/DishRow';
 import BasketIcon from '../components/BasketIcon';
 import { useDispatch } from 'react-redux';
+import {setRestaurant} from '../features/restaurantSlice'
 
 const RestaurantScreen = () => {
   const navigation = useNavigation();
@@ -47,7 +48,7 @@ const RestaurantScreen = () => {
       lat
     })
     )
-  }, [dispatch])
+  }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({
